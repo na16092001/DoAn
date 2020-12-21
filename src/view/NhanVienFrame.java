@@ -5,17 +5,35 @@
  */
 package view;
 
+import model.Employes;
+import DAO.NhanVienDAO;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Business;
 /**
  *
  * @author 84942
  */
 public class NhanVienFrame extends javax.swing.JInternalFrame {
-
+    NhanVienDAO nhanVienDAO;
+    
+    List<Employes> lstEmployes;
+    List<Business> lstBusinesses;
+    
+    DefaultTableModel defaultTableModel;
+    DefaultComboBoxModel defaultComboBoxModel;
     /**
      * Creates new form NhanVienFrame
      */
     public NhanVienFrame() {
         initComponents();
+        nhanVienDAO =new NhanVienDAO();
+        showTable();
+        
+        loaddata();
+        loadBusiness();
     }
 
     /**
@@ -52,6 +70,11 @@ public class NhanVienFrame extends javax.swing.JInternalFrame {
         btnAdd.setMinimumSize(new java.awt.Dimension(79, 90));
         btnAdd.setPreferredSize(new java.awt.Dimension(79, 90));
         btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnAdd);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
@@ -125,7 +148,7 @@ public class NhanVienFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -142,7 +165,21 @@ public class NhanVienFrame extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
+    public void showTable(){
+        defaultTableModel =new DefaultTableModel();
+        defaultTableModel.addColumn("");
+    }
+    public void loadBusiness(){
+        Business bs = (Business) ComboNghiepVu.getSelectedItem();
+        JOptionPane.showMessageDialog(null, bs);
+    }
+    public void loaddata(){
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboNghiepVu;
     private javax.swing.JButton btnAdd;

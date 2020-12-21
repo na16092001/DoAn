@@ -9,6 +9,6 @@ package DAO;
  *
  * @author 84942
  */
-public class ConnectionUtil {
+public interface IDanhMucDAO extends GenericDAO<Category>{
     
 }
