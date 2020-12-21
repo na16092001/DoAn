@@ -5,9 +5,13 @@
  */
 package DAO;
 
+import java.sql.CallableStatement;
 import java.util.List;;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Employes;
 
 /**
@@ -22,6 +26,19 @@ public class NhanVienDAO {
         try {
             String sql="";
         } catch (Exception e) {
+        }
+        return lstEmployes;
+    }
+    
+    public List<Employes> create(){
+        try {
+            lstEmployes.remove(lstEmployes);
+            String sql ="{CALL proc_insertEmployes}";
+            CallableStatement call = conn.prepareCall(sql);
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lstEmployes;
     }

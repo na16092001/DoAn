@@ -10,5 +10,4 @@ package DAO;
  * @author 84942
  */
 public class ConnectionUtil {
-    
 }
