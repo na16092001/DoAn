@@ -5,17 +5,40 @@
  */
 package view;
 
+import model.Employes;
+import DAO.NhanVienDAO;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Business;
 /**
  *
  * @author daika
  */
+<<<<<<< HEAD
 public class NhanVienFrame extends javax.swing.JPanel {
 
+=======
+public class NhanVienFrame extends javax.swing.JInternalFrame {
+    NhanVienDAO nhanVienDAO;
+    
+    List<Employes> lstEmployes;
+    List<Business> lstBusinesses;
+    
+    DefaultTableModel defaultTableModel;
+    DefaultComboBoxModel defaultComboBoxModel;
+>>>>>>> fbc94cbfa95156beef28c21222b9ecde9107f505
     /**
      * Creates new form n
      */
     public NhanVienFrame() {
         initComponents();
+        nhanVienDAO =new NhanVienDAO();
+        showTable();
+        
+        loaddata();
+        loadBusiness();
     }
 
     /**
@@ -66,6 +89,11 @@ public class NhanVienFrame extends javax.swing.JPanel {
         btnAdd.setMinimumSize(new java.awt.Dimension(79, 90));
         btnAdd.setPreferredSize(new java.awt.Dimension(79, 90));
         btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnAdd);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
@@ -119,10 +147,62 @@ public class NhanVienFrame extends javax.swing.JPanel {
 
         jToolBar1.add(jPanel1);
 
+<<<<<<< HEAD
         add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 1, 700, 90));
+=======
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Họ tên", "Số điện thoại", "Email", "Địa chỉ", "Giới tính", "Nghiệp vụ", "Ngày tạo", "Trạng thái"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
+        );
+
+        pack();
+>>>>>>> fbc94cbfa95156beef28c21222b9ecde9107f505
     }// </editor-fold>//GEN-END:initComponents
 
-
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
+    public void showTable(){
+        defaultTableModel =new DefaultTableModel();
+        defaultTableModel.addColumn("");
+    }
+    public void loadBusiness(){
+        Business bs = (Business) ComboNghiepVu.getSelectedItem();
+        JOptionPane.showMessageDialog(null, bs);
+    }
+    public void loaddata(){
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboNghiepVu;
     private javax.swing.JButton btnAdd;
