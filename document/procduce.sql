@@ -18,8 +18,8 @@ go
 create proc proc_DeleteBusiness @id int as delete tbl_Business where id=@id
 go
 --/ thêm dữ liệu vào bảng 
-insert into tbl_Business (id,name,status_Busines) values (1,N'Tiếp tân',0)
-insert into tbl_Business (id,name,status_Busines) values (2,N'Thu Ngân',0)
+insert into tbl_Business (name,status_Busines) values (N'Tiếp tân',0)
+insert into tbl_Business (name,status_Busines) values (N'Thu Ngân',0)
 -- nhân viên
 go
 create proc proc_getAllEmployes as select *from tbl_Employees 
@@ -51,4 +51,33 @@ as update tbl_Employees set name=@name,phone=@phone,email=@email,address=@addres
 where id=@id
 go
 create proc proc_DeleteEmployes @id int as delete tbl_Employees where id=@id
+
+-- Danh mục
 go
+create proc proc_getAllCategory
+as
+select * from tbl_Category
+go
+create proc proc_InsertCategory
+@groupFood nvarchar(200),
+@status_cat bit
+as
+Insert into tbl_Category(groupFood,status_cat)values(@groupFood,@status_cat)
+
+go
+create proc proc_UpdateCategory
+
+@groupFood nvarchar(200),
+@status_cat bit,
+@id int
+as update tbl_Category set groupFood=@groupFood,status_cat=@status_cat where id=@id
+
+go
+create proc proc_DeleteCategory
+@id int
+as 
+Delete tbl_Category where id=@id
+
+
+select*from tbl_Category
+select * from tbl_Business

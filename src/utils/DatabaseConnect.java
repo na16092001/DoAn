@@ -19,9 +19,9 @@ public class DatabaseConnect {
     private static DatabaseConnect instance;
     private static Connection conn;
     private static final String DRIVER="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String URL="jdbc:sqlserver://localhost:1433;databaseName=zozu1";
+    private static final String URL="jdbc:sqlserver://localhost:49884;databaseName=zozu1";
     private static final String USE="sa";
-    private static final String PASSWORD="1234";
+    private static final String PASSWORD="1234$";
     
     private DatabaseConnect (){
         try {

@@ -156,5 +156,13 @@ public class AbstractDAO<T> implements GenericDAO<T>{
            
         }
     }
+
+    @Override
+    public void delete(String sql, Object... parameters) {
+        CallableStatement cal=null;
+        ResultSet rs=null;
+        Connection conn=null;
+        
+    }
     
 }
