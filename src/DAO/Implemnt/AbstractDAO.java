@@ -17,37 +17,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utils.DatabaseConnect;
 
 /**
  *
  * @author 84942
  */
-public class AbstractDAO<T> implements GenericDAO<T>{
+public class AbstractDAO<T> implements GenericDAO<T> {
 
     @Override
     public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object... parameter) {
-        List<T> result=new ArrayList<>();
-        CallableStatement cal=null;
-        ResultSet rs=null;
-        Connection conn=null;
+        List<T> result = new ArrayList<>();
+        CallableStatement csmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
         try {
-            conn=utils.DatabaseConnect.getInstance().getConnection();
-            cal=conn.prepareCall(sql);
-            setParameter(cal,parameter);
-            rs = cal.executeQuery();
+            conn = DatabaseConnect.getInstance().getConnection();
+            csmt = conn.prepareCall(sql);
+            setParameter(csmt, parameter);
+            rs = csmt.executeQuery();
             while (rs.next()) {
                 result.add(rowMapper.mapRow(rs));
             }
             return result;
-        } catch (SQLException e) {
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
+        } catch (SQLException ex) {
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
                 if (conn != null) {
                     conn.close();
                 }
-                if (cal != null) {
-                    cal.close();
+                if (csmt != null) {
+                    csmt.close();
                 }
                 if (rs != null) {
                     rs.close();
@@ -58,40 +59,42 @@ public class AbstractDAO<T> implements GenericDAO<T>{
         }
         return null;
     }
-    private void setParameter(CallableStatement cal, Object... parameters){
+
+    private void setParameter(CallableStatement csmt, Object... parameters) {
         try {
             for (int i = 0; i < parameters.length; i++) {
                 Object parameter = parameters[i];
-                int index =i+1;
+                int index = i + 1;
                 if (parameter instanceof Integer) {
-                    cal.setInt(index, (int) parameter);
-                }else if(parameter instanceof String){
-                    cal.setNString(index, (String) parameter);
-                }else if(parameter instanceof Float){
-                    cal.setFloat(index, (float) parameter);
-                }else if(parameter instanceof Boolean){
-                    cal.setBoolean(index, (boolean) parameter);
-                }else if(parameter instanceof LocalDate){
-                    cal.setDate(index, (Date) parameter);
+                    csmt.setInt(index, (int) parameter);
+                } else if (parameter instanceof String) {
+                    csmt.setNString(index, (String) parameter);
+                } else if (parameter instanceof Float) {
+                    csmt.setFloat(index, (float) parameter);
+                } else if (parameter instanceof Boolean) {
+                    csmt.setBoolean(index, (boolean) parameter);
+                } else if (parameter instanceof LocalDate) {
+                    csmt.setDate(index, (Date) parameter);
                 }
             }
         } catch (SQLException e) {
         }
     }
+
     @Override
     public void update(String sql, Object... parameters) {
-       CallableStatement cal=null;
-        ResultSet rs=null;
-        Connection conn=null;
+        CallableStatement csmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+
         try {
-            conn = utils.DatabaseConnect.getInstance().getConnection();
+            conn = DatabaseConnect.getInstance().getConnection();
             conn.setAutoCommit(false);
-            cal = conn.prepareCall(sql);
-            setParameter(cal, parameters);
-            cal.executeUpdate();
+            csmt = conn.prepareCall(sql);
+            setParameter(csmt, parameters);
+            csmt.executeUpdate();
             conn.commit();
-            
-        } catch (Exception e) {
+        } catch (SQLException ex) {
             if (conn != null) {
                 try {
                     conn.rollback();
@@ -99,14 +102,14 @@ public class AbstractDAO<T> implements GenericDAO<T>{
                     Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex1);
                 }
             }
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
             try {
                 if (conn != null) {
                     conn.close();
                 }
-                if (cal != null) {
-                    cal.close();
+                if (csmt != null) {
+                    csmt.close();
                 }
                 if (rs != null) {
                     rs.close();
@@ -114,23 +117,23 @@ public class AbstractDAO<T> implements GenericDAO<T>{
             } catch (SQLException e) {
                 // TODO: handle exception
             }
-           
         }
     }
 
     @Override
     public void insert(String sql, Object... parameters) {
-       CallableStatement cal=null;
-        ResultSet rs=null;
-        Connection conn=null;
+        CallableStatement csmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+
         try {
-            conn = utils.DatabaseConnect.getInstance().getConnection();
+            conn = DatabaseConnect.getInstance().getConnection();
             conn.setAutoCommit(false);
-            cal = conn.prepareCall(sql);
-            setParameter(cal, parameters);
-            cal.executeUpdate();
+            csmt = conn.prepareCall(sql);
+            setParameter(csmt, parameters);
+            csmt.executeUpdate();
             conn.commit();
-        } catch (Exception e) {
+        } catch (SQLException ex) {
             if (conn != null) {
                 try {
                     conn.rollback();
@@ -138,14 +141,14 @@ public class AbstractDAO<T> implements GenericDAO<T>{
                     Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex1);
                 }
             }
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
             try {
                 if (conn != null) {
                     conn.close();
                 }
-                if (cal != null) {
-                    cal.close();
+                if (csmt != null) {
+                    csmt.close();
                 }
                 if (rs != null) {
                     rs.close();
@@ -153,8 +156,8 @@ public class AbstractDAO<T> implements GenericDAO<T>{
             } catch (SQLException e) {
                 // TODO: handle exception
             }
-           
         }
     }
-    
 }
+
+

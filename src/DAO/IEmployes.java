@@ -18,5 +18,4 @@ public interface IEmployes extends GenericDAO<Employes>{
     void insert(Employes employes);
     void update(Employes employes);
     void delete(Employes employes);
-    boolean Logins(Employes employes);
 }

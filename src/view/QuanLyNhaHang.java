@@ -65,7 +65,7 @@ public class QuanLyNhaHang extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Danh mục");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -163,7 +163,7 @@ public class QuanLyNhaHang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        JInternalFrame frame=new NhanVienFrame();
+        JInternalFrame frame=new EmployesJFrame();
         frame.setVisible(true);
         
         jDesktopPane1.add(frame);

@@ -47,7 +47,7 @@ create table tbl_Employees
 	gender bit default (0) ,
 	id_Busines int not null ,
 	status_Employes bit,
-	created_date date,
+	password nvarchar(200),
 	foreign key (id_Busines) references tbl_Business(id)
 )
 go
@@ -79,3 +79,11 @@ create table tbl_BillDetail(
 	foreign key (id_food) references tbl_Food(id)
 )
 go
+drop table tbl_BillDetail
+drop table tbl_Bill
+drop table tbl_DiningTable
+drop table tbl_Employees
+drop table tbl_Business
+drop table tbl_Customer
+drop table tbl_Food
+drop table tbl_Category

@@ -50,4 +50,9 @@ public class Business {
     public void setStatus_Busines(boolean status_Busines) {
         this.status_Busines = status_Busines;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

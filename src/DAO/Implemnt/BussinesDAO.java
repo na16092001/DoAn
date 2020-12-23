@@ -20,7 +20,7 @@ public class BussinesDAO extends AbstractDAO<Business> implements IBusiness{
 
     @Override
     public List<Business> getAll() {
-        String sql = "{CALL proc_getAllBusiness}";
+        String sql = "select *from tbl_Business";
         return query(sql, new BussinesMapper());
     }
 
