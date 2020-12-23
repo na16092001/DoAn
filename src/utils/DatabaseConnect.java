@@ -8,25 +8,39 @@ package utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author 84942
  */
 public class DatabaseConnect {
+    private static DatabaseConnect instance;
+    private static Connection conn;
     private static final String DRIVER="com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static final String URL="jdbc:sqlserver://localhost:1433;databaseName=zozu1";
     private static final String USE="sa";
     private static final String PASSWORD="1234";
     
-    public static Connection getConnection(){
-        Connection conn=null;
+    private DatabaseConnect (){
         try {
             Class.forName(DRIVER);
-            conn=DriverManager.getConnection(URL,USE,PASSWORD);
-        } catch ( ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            conn = DriverManager.getConnection(URL, USE, PASSWORD); 
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DatabaseConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+    public static Connection getConnection(){
         return conn;
+    }
+    public static DatabaseConnect getInstance() throws SQLException{
+        if (instance == null) {
+            instance = new DatabaseConnect();
+        }else if(instance.getConnection().isClosed()){
+            instance = new DatabaseConnect();
+        }
+        return instance;
     }
 }

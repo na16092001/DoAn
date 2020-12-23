@@ -12,10 +12,11 @@ import model.Employes;
  *
  * @author 84942
  */
-public interface INhanVienDAO extends GenericDAO<Employes>{
+public interface IEmployes extends GenericDAO<Employes>{
     List<Employes> getAll();
     void getById(Employes employes);
     void insert(Employes employes);
     void update(Employes employes);
     void delete(Employes employes);
+    boolean Logins(Employes employes);
 }

@@ -12,8 +12,8 @@ import model.Business;
  *
  * @author 84942
  */
-public interface INghiepVuDAO extends GenericDAO<Business>{
-     List<Business> getAll();
+public interface IBusiness extends GenericDAO<Business>{
+    List<Business> getAll();
     void getById(Business business);
     void insert(Business business);
     void update(Business business);

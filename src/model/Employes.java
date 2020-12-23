@@ -18,35 +18,39 @@ public class Employes {
     private String phone;
     private String email;
     private String address;
+    private String password;
     private boolean gender;
     private int id_Busines;
     private boolean status_Employes;
     private LocalDate created_date;
-
+    private String bussines;
     public Employes() {
     }
 
-    public Employes(int id, String name, String phone, String email, String address, boolean gender, int id_Busines, boolean status_Employes, LocalDate created_date) {
+    public Employes(int id, String name, String phone, String email, String address,String password, boolean gender, int id_Busines, boolean status_Employes, LocalDate created_date,String bussines) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.password = password;
         this.gender = gender;
         this.id_Busines = id_Busines;
         this.status_Employes = status_Employes;
         this.created_date = created_date;
+        this.bussines = bussines;
     }
 
-    public Employes(String name, String phone, String email, String address, boolean gender, int id_Busines, boolean status_Employes, LocalDate created_date) {
+    public Employes(String name, String phone, String email, String address,String password, boolean gender, int id_Busines, boolean status_Employes, LocalDate created_date,String bussines) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.password = password;
         this.gender = gender;
         this.id_Busines = id_Busines;
         this.status_Employes = status_Employes;
-        this.created_date = created_date;
+        this.bussines = bussines;
     }
 
     public int getId() {
@@ -88,6 +92,13 @@ public class Employes {
     public void setAddress(String address) {
         this.address = address;
     }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public boolean isGender() {
         return gender;
@@ -121,6 +132,12 @@ public class Employes {
         this.created_date = created_date;
     }
     
-    
+    public String getBussines() {
+        return bussines;
+    }
+
+    public void setBussines(String bussines) {
+        this.bussines = bussines;
+    }
 
 }

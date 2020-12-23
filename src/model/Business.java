@@ -16,13 +16,17 @@ public class Business {
 
     public Business() {
     }
-
     public Business(int id, String name, boolean status_Busines) {
         this.id = id;
         this.name = name;
         this.status_Busines = status_Busines;
     }
 
+    public Business(String name, boolean status_Busines) {
+        this.name = name;
+        this.status_Busines = status_Busines;
+    }
+    
     public int getId() {
         return id;
     }
