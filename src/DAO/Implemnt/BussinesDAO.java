@@ -31,17 +31,20 @@ public class BussinesDAO extends AbstractDAO<Business> implements IBusiness{
 
     @Override
     public void insert(Business business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "{CALL proc_insertBusiness(?,?)}";
+        this.insert(sql, business.getName(), business.isStatus_Busines());
     }
 
     @Override
     public void update(Business business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "{CALL proc_UpdateBusiness(?,?,?)}";
+                this.update(sql, business.getName(),business.isStatus_Busines(),business.getId());
     }
 
     @Override
     public void delete(Business business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "{CALL proc_DeleteBusiness(?)}";
+        this.update(business);
     }
     
 }

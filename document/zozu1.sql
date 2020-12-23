@@ -32,7 +32,7 @@ create table tbl_Customer
 )
 go
 create table tbl_Business(
-	id int primary key,
+	id int identity primary key,
 	name nvarchar(200),
 	status_Busines bit
 )
